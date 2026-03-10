@@ -1,0 +1,4 @@
+
+  error.sql
+
+    1:1       error    add-foreign-key-no-valid        ADD FOREIGN KEY without NOT VALID

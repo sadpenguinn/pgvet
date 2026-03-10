@@ -1,0 +1,4 @@
+
+  error.sql
+
+    8:1       warning  redundant-index                 index on (user_id) is redundant: covered by index on (user_id, status)

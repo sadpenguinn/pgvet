@@ -1,0 +1,44 @@
+name: Feature Request
+description: Suggest a new rule or improvement
+labels: ["enhancement"]
+body:
+    - type: markdown
+      attributes:
+          value: |
+              Before submitting, check that this isn't already tracked in open issues.
+
+    - type: dropdown
+      id: type
+      attributes:
+          label: Type
+          options:
+              - New danger rule
+              - New style rule
+              - Improvement to existing rule
+              - CLI / output improvement
+              - Other
+      validations:
+          required: true
+
+    - type: textarea
+      id: problem
+      attributes:
+          label: Problem
+          description: What PostgreSQL anti-pattern or pain point does this address?
+      validations:
+          required: true
+
+    - type: textarea
+      id: sql_example
+      attributes:
+          label: SQL example
+          description: SQL that should be flagged (for rule requests)
+          render: sql
+
+    - type: textarea
+      id: proposal
+      attributes:
+          label: Proposed behavior
+          description: How should pgvet handle this?
+      validations:
+          required: true

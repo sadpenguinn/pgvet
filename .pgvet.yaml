@@ -1,0 +1,82 @@
+rules:
+    danger:
+        # CREATE INDEX without CONCURRENTLY blocks writes for the entire build duration
+        create-index-no-concurrently:
+            enabled: true
+            severity: error
+
+        # DROP INDEX without CONCURRENTLY blocks writes
+        drop-index-no-concurrently:
+            enabled: true
+            severity: error
+
+        # ADD COLUMN NOT NULL without DEFAULT causes a full table rewrite (PG < 11)
+        add-column-not-null:
+            enabled: true
+            severity: error
+
+        # SET NOT NULL requires a full sequential scan of the table
+        set-not-null:
+            enabled: true
+            severity: warning
+
+        # ADD FOREIGN KEY without NOT VALID holds ACCESS EXCLUSIVE LOCK during scan
+        add-foreign-key-no-valid:
+            enabled: true
+            severity: error
+
+        # DROP TABLE is irreversible
+        drop-table:
+            enabled: false
+
+        # DROP COLUMN is irreversible
+        drop-column:
+            enabled: false
+
+        # TRUNCATE is irreversible and holds ACCESS EXCLUSIVE LOCK
+        truncate:
+            enabled: true
+            severity: warning
+
+        # LOCK TABLE acquires an explicit lock that can cause deadlocks
+        lock-table:
+            enabled: true
+            severity: error
+
+        # RENAME TABLE/COLUMN breaks existing code using the old name
+        rename:
+            enabled: true
+            severity: warning
+
+        # ALTER COLUMN TYPE rewrites the entire table
+        change-column-type:
+            enabled: true
+            severity: error
+
+        # Redundant index — superseded by another index on the same table
+        redundant-index:
+            enabled: true
+            severity: warning
+
+    style:
+        # SQL keywords must use consistent casing (case: upper / lower)
+        keyword-case:
+            enabled: true
+            severity: warning
+            case: upper
+
+        # Lines must not end with trailing spaces or tabs
+        trailing-whitespace:
+            enabled: true
+            severity: warning
+
+        # Lines must not exceed the configured character limit
+        max-line-length:
+            enabled: false
+            severity: warning
+            max: 120
+
+        # Every statement must end with a semicolon
+        require-semicolon:
+            enabled: true
+            severity: warning

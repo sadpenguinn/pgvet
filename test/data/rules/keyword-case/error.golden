@@ -1,0 +1,14 @@
+
+  error.sql
+
+    1:1       warning  keyword-case                    keyword 'create' must be uppercase: CREATE
+    1:8       warning  keyword-case                    keyword 'table' must be uppercase: TABLE
+    2:11      warning  keyword-case                    keyword 'serial' must be uppercase: SERIAL
+    2:19      warning  keyword-case                    keyword 'primary' must be uppercase: PRIMARY
+    2:27      warning  keyword-case                    keyword 'key' must be uppercase: KEY
+    3:11      warning  keyword-case                    keyword 'text' must be uppercase: TEXT
+    3:19      warning  keyword-case                    keyword 'not' must be uppercase: NOT
+    3:23      warning  keyword-case                    keyword 'null' must be uppercase: NULL
+    6:1       warning  keyword-case                    keyword 'create' must be uppercase: CREATE
+    6:8       warning  keyword-case                    keyword 'index' must be uppercase: INDEX
+    6:30      warning  keyword-case                    keyword 'on' must be uppercase: ON

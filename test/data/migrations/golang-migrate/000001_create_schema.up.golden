@@ -1,0 +1,5 @@
+
+  000001_create_schema.up.sql
+
+    9:1       error    create-index-no-concurrently    CREATE INDEX without CONCURRENTLY
+    11:1      error    add-column-not-null             ADD COLUMN NOT NULL without DEFAULT

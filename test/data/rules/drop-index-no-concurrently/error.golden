@@ -1,0 +1,4 @@
+
+  error.sql
+
+    1:1       error    drop-index-no-concurrently      DROP INDEX without CONCURRENTLY
