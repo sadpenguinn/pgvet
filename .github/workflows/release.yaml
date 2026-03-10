@@ -1,0 +1,52 @@
+name: Release
+
+on:
+    workflow_dispatch:
+        inputs:
+            semver:
+                type: string
+                description: "Semver (eg: v1.2.3)"
+                required: true
+
+jobs:
+    release:
+        runs-on: ubuntu-latest
+        permissions:
+            contents: write
+        steps:
+            - uses: actions/checkout@v6
+              with:
+                  fetch-depth: 0
+
+            - name: Set up Go
+              uses: actions/setup-go@v6
+              with:
+                  go-version-file: "go.mod"
+
+            - name: Test
+              run: make test
+
+            - name: Create tag
+              run: |
+                  git config --global user.name '${{ github.triggering_actor }}'
+                  git config --global user.email "${{ github.triggering_actor }}@users.noreply.github.com"
+                  git tag ${{ inputs.semver }}
+                  git push origin ${{ inputs.semver }}
+
+            - name: Build release binary
+              run: |
+                  GOOS=linux  GOARCH=amd64 go build -ldflags "-X main.version=${{ inputs.semver }}" -o bin/pgvet-linux-amd64   ./cmd/pgvet
+                  GOOS=darwin GOARCH=amd64 go build -ldflags "-X main.version=${{ inputs.semver }}" -o bin/pgvet-darwin-amd64  ./cmd/pgvet
+                  GOOS=darwin GOARCH=arm64 go build -ldflags "-X main.version=${{ inputs.semver }}" -o bin/pgvet-darwin-arm64  ./cmd/pgvet
+                  GOOS=windows GOARCH=amd64 go build -ldflags "-X main.version=${{ inputs.semver }}" -o bin/pgvet-windows-amd64.exe ./cmd/pgvet
+
+            - name: Release
+              uses: softprops/action-gh-release@v2
+              with:
+                  name: ${{ inputs.semver }}
+                  tag_name: ${{ inputs.semver }}
+                  files: |
+                      bin/pgvet-linux-amd64
+                      bin/pgvet-darwin-amd64
+                      bin/pgvet-darwin-arm64
+                      bin/pgvet-windows-amd64.exe

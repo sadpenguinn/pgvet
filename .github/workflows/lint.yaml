@@ -1,0 +1,22 @@
+name: Lint
+
+on:
+    push:
+        branches:
+            - master
+    pull_request:
+
+jobs:
+    lint:
+        name: lint
+        runs-on: ubuntu-latest
+
+        steps:
+            - uses: actions/checkout@v6
+            - uses: actions/setup-go@v6
+              with:
+                  go-version-file: "go.mod"
+            - name: golangci-lint
+              uses: golangci/golangci-lint-action@v9
+              with:
+                  args: --timeout 120s --max-same-issues 50 -c ./configs/.golangci.yaml

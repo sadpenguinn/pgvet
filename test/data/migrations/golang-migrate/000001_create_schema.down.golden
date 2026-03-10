@@ -1,0 +1,5 @@
+
+  000001_create_schema.down.sql
+
+    1:22      warning  drop-column                     DROP COLUMN
+    3:1       warning  drop-table                      DROP TABLE

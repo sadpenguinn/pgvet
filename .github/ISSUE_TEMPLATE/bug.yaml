@@ -1,0 +1,55 @@
+name: Bug Report
+description: Something isn't working as expected
+labels: ["bug"]
+body:
+    - type: markdown
+      attributes:
+          value: |
+              Please fill in as much detail as possible. The more context you provide, the faster we can fix it.
+
+    - type: input
+      id: version
+      attributes:
+          label: pgvet version
+          placeholder: "e.g. v0.1.0 (run: pgvet -version)"
+      validations:
+          required: true
+
+    - type: input
+      id: go_version
+      attributes:
+          label: Go version
+          placeholder: "e.g. go1.26.0"
+      validations:
+          required: true
+
+    - type: textarea
+      id: sql
+      attributes:
+          label: SQL that triggers the bug
+          description: Minimal SQL snippet that reproduces the issue
+          render: sql
+      validations:
+          required: true
+
+    - type: textarea
+      id: config
+      attributes:
+          label: pgvet config (.pgvet.yaml)
+          description: Leave empty if using default config
+          render: yaml
+
+    - type: textarea
+      id: expected
+      attributes:
+          label: Expected behavior
+      validations:
+          required: true
+
+    - type: textarea
+      id: actual
+      attributes:
+          label: Actual behavior
+          description: Include the full output of pgvet
+      validations:
+          required: true

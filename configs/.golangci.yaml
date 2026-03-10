@@ -1,0 +1,46 @@
+version: "2"
+linters:
+    default: all
+    disable:
+        - ireturn # even pgx returns interface
+        - exhaustruct # facepalming
+        - gochecknoglobals # globals is okay
+        - depguard # useful only for The Pentagon
+        - tagliatelle # JSON snake_case is more readable
+        - testpackage # it's not a good practice to separate tests
+        - varnamelen # forces to use too long names
+        - wsl # deprecated
+        - mnd # false positive
+        - err113 # it's okay to use dynamic errors if you don't have another one to wrap
+    settings:
+        exhaustive:
+            check:
+                - switch
+                - map
+            ignore-enum-members: ".+Unspecified$"
+        dupl:
+            threshold: 400
+        funlen:
+            lines: 200
+            ignore-comments: true
+            statements: 500
+        cyclop:
+            max-complexity: 20
+    exclusions:
+        generated: lax
+        presets:
+            - comments
+            - common-false-positives
+            - legacy
+            - std-error-handling
+        rules:
+            - path: _test\.go
+              linters:
+                  - funlen
+                  - maintidx
+                  - lll
+formatters:
+    enable:
+        - gofmt
+        - gofumpt
+        - goimports

@@ -1,0 +1,5 @@
+CREATE TABLE users (
+    id         INTEGER                  NOT NULL,
+    email      CHARACTER VARYING(255)   NOT NULL,
+    created_at TIMESTAMP WITH TIME ZONE NOT NULL DEFAULT NOW()
+);

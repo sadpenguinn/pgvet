@@ -1,0 +1,4 @@
+
+  error.sql
+
+    1:1       error    add-column-not-null             ADD COLUMN NOT NULL without DEFAULT

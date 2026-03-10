@@ -1,0 +1,7 @@
+
+  001_initial_schema.sql
+
+    17:1      error    create-index-no-concurrently    CREATE INDEX without CONCURRENTLY
+    19:1      error    add-foreign-key-no-valid        ADD FOREIGN KEY without NOT VALID
+    28:1      warning  drop-table                      DROP TABLE
+    29:1      warning  drop-table                      DROP TABLE
