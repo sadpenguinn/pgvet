@@ -41,7 +41,7 @@ jobs:
                   GOOS=windows GOARCH=amd64 go build -ldflags "-X main.version=${{ inputs.semver }}" -o bin/pgvet-windows-amd64.exe ./cmd/pgvet
 
             - name: Release
-              uses: softprops/action-gh-release@v2
+              uses: softprops/action-gh-release@v3
               with:
                   name: ${{ inputs.semver }}
                   tag_name: ${{ inputs.semver }}
